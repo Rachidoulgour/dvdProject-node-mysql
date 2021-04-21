@@ -1,17 +1,24 @@
 const app = require('./app');
 const sequelize = require('./database/db');
 
-// starting the server
+// connecting to database 
 
 function startConnection(){
     sequelize.authenticate().then(()=>{
         console.log("Database connected")
+    }).catch((e) =>{
+        console.log(e)
     });
 }
-
-async function main(){
-    startConnection();
-    app.listen(app.get('port'));
+// starting the server
+function main(){
+    try{
+          startConnection();
+         app.listen(app.get('port'));
     console.log('Server is running on port', app.get('port'));
+    } catch (e) {
+        console.log(e)
+    }
+    
 }
 main ();

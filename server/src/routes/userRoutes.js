@@ -1,4 +1,4 @@
-module.exports = function(app) {
+
     const express = require('express');
     const api = express.Router();
 
@@ -9,4 +9,5 @@ module.exports = function(app) {
     api.post('/signup', userController.signup);
     
 	
-}
+
+module.exports = api;

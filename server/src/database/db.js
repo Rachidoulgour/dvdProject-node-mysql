@@ -15,5 +15,11 @@ const sequelize = new Sequelize(database.database, database.username, database.p
    
   });
 
+  const db = {};
+ 
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+ 
+db.user = require('../models/user.model')(sequelize, Sequelize);
 
   module.exports = sequelize;

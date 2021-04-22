@@ -5,8 +5,8 @@
     const userController = require('../controllers/userController');
     
     
-    // app.get('/', usercontroller.home);
     api.post('/signup', userController.signup);
+    api.post('/signin', userController.signin);
     
 	
 

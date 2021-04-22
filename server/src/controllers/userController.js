@@ -1,4 +1,5 @@
 const db = require('../database/db');
+const bcrypt = require('bcryptjs');
 
 
 const User = db.models.users;
@@ -11,7 +12,7 @@ function signup(req, res) {
 	User.create({
 		username: req.body.username,
 		email: req.body.email,
-		password: req.body.password,
+		password: bcrypt.hashSync(req.body.password, 8),
         role:'USER'
 	}).then(() => {
 				return res.status(200).send({message:"User registered successfully!"});

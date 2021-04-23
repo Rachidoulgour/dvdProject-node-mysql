@@ -54,9 +54,49 @@ getMovieById = async (req, res) => {
 
 }
 
+// Delete movie
+deleteMovie = async (req,res)=>{
+	const movie = await Movie.destroy({
+		where:{
+			id:req.params.id
+		}
+	})
+		if(!movie){
+			return res.status(404).send({message:'Movie Not Found.'});
+		}
+		res.status(200).send({message:"Deleted"});
+	
+		// res.status(500).send('Error -> ' + err);
+	
+}
+
+// Update movie
+updateMovie = async (req,res)=>{
+    
+    const movieUpdate = req.body
+    
+	const movie = await Movie.findOne({
+		where:{
+			id:req.params.id
+		}
+	})
+		if(!movie){
+            
+			return res.status(404).send({message:'Movie Not Found.'});
+		}else{
+            Movie.update(movieUpdate,{where:{
+                id:req.params.id
+            }})
+            res.status(200).send({message:"Movie updated"});
+        }
+        
+	
+}
 
 module.exports = {
     addMovie,
     getMovies,
-    getMovieById
+    getMovieById,
+    deleteMovie,
+    updateMovie
 }

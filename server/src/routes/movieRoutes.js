@@ -7,6 +7,7 @@
     
     api.post('/add-movie', movieController.addMovie);
     api.get('/get-movies', movieController.getMovies);
+    api.get('/get-movie/:id', movieController.getMovieById);
     
     
 	

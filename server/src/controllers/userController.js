@@ -49,8 +49,27 @@ signin = (req, res) => {
 	});
 }
 
+//Get All Users
+getUsers = async (req, res) => {
+
+    const users = await User.findAll();
+    if (!users) {
+        return res.status(404).send({
+            message: "Movies not found"
+        });
+    } else {
+		users.forEach(user => {
+			user.password = undefined
+		});
+        return res.status(200).send({
+            users
+        });
+    }
+}
+
 
 module.exports = {
     signup,
-	signin
+	signin,
+	getUsers
 }

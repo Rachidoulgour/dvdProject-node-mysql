@@ -84,8 +84,8 @@ export default {
         }
         AuthService.signup(values)
         .then(res => {
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user', JSON.stringify(res.data.user));
+            console.log(res)
+            this.$router.push('/login');
         })
       });
     },

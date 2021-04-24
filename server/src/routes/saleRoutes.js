@@ -3,4 +3,6 @@ const express = require('express');
 
     const salesController = require('../controllers/salesController');
 
-    api.post('/create-movie', salesController.createSale);
+    api.post('/create-sale', salesController.createSale);
+
+    module.exports = api;

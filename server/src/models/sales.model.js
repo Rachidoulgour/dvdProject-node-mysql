@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
 	  client_id: {
 		  type: Sequelize.STRING
 	  },
-	  created_at: {
+	  created_date: {
 		  type: Sequelize.STRING
 	  },
       is_returned: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
     }
 	  
 	},{
-		timestamps: true
+		timestamps: false
 	});
 	
 	return Sale;

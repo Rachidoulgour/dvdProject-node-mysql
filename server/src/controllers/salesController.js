@@ -36,8 +36,31 @@ getSales = async (req, res) => {
     }
 }
 
+//Return the movie
+updateSaleToReturned = async (req,res)=>{
+    
+    
+    
+	const sale = await Sale.findOne({
+		where:{
+			id:req.params.id
+		}
+	})
+		if(!sale){
+            
+			return res.status(404).send({message:'Sale Not Found.'});
+		}else{
+            Sale.update({is_returned: true},{where:{
+                id:req.params.id
+            }})
+            return res.status(200).send({sale, message:"Movie updated"});
+        }
+        
+	
+}
 
 module.exports = {
     createSale,
-    getSales
+    getSales,
+    updateSaleToReturned
 }

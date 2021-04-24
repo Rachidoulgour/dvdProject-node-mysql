@@ -3,7 +3,7 @@ const moment = require('moment');
 
 
 exports.ensureAuth = function(req, res, next){
-    console.log(req.headers)
+    
     if(!req.headers.authorization){
         return res.status(403).send({
             message: 'Petition without headers'

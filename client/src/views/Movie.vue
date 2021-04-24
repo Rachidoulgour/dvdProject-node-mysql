@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div v-for="movie in movies" :key="movie.id">
-        <router-link :to="`/movie/${movie.id}`">
+    <div>
       <a-card :title="movie.name" style="width: 300px">
         <p>{{ movie.genre }}</p>
         <p>Price: {{ movie.price }}€</p>
       </a-card>
-      </router-link>
     </div>
   </div>
 </template>
@@ -14,22 +12,24 @@
 <script>
 import { MoviesService } from "../services/services";
 export default {
-  name: "Home",
+  name: "Movie",
   data() {
     return {
-      movies: [],
+      movie: {},
     };
   },
   mounted() {
-    this.getAllMovies();
+    this.getMovie();
   },
   methods: {
-    getAllMovies() {
-      MoviesService.getMovies()
+    getMovie() {
+      console.log(this.$route.params.id);
+      MoviesService.getMovieById(this.$route.params.id)
         .then((res) => {
-          return res.data.movies;
+          console.log(res.data.movie);
+          return res.data.movie;
         })
-        .then((movies) => (this.movies = movies))
+        .then((movie) => (this.movie = movie))
         .catch((err) => {
           console.error(err);
           this.$notification.error({

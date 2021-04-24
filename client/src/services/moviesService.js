@@ -6,6 +6,7 @@ class MoviesService {
     getToken() {
         return localStorage.getItem('token');
       }
+
     async getMovies() {
       
       const res = await axios.get(URL+'/get-movies', {
@@ -16,6 +17,17 @@ class MoviesService {
   
       return res;
     }
+
+    async getMovieById(id) {
+      
+        const res = await axios.get(URL+'/get-movie/'+id, {
+          headers: {
+              Authorization: 'Bearer ' + this.getToken(),
+            },
+        });
+        console.log(res)
+        return res;
+      }
   
     
   

@@ -20,7 +20,23 @@ function createSale(req, res) {
 	})
 }
 
+// Get all sales
+getSales = async (req, res) => {
+
+    const sales = await Sale.findAll();
+    if (!sales) {
+        return res.status(404).send({
+            message: "Movies not found"
+        });
+    } else {
+        return res.status(200).send({
+            sales
+        });
+    }
+}
+
 
 module.exports = {
-    createSale
+    createSale,
+    getSales
 }

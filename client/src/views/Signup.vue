@@ -43,7 +43,7 @@
 </template>
 
 <script>
-//import { AuthService } from '../services/services';
+import { AuthService } from '../services/services';
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
@@ -82,7 +82,11 @@ export default {
         if (!err) {
           console.log('Received values of form: ', values);
         }
-        
+        AuthService.signup(values)
+        .then(res => {
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+        })
       });
     },
   },

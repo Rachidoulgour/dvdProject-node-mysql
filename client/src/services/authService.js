@@ -12,6 +12,15 @@ class AuthService {
     return res;
   }
 
+  async signup(user) {
+    console.log(user)
+    const res = await axios.post(URL+'/signup', user, {
+      
+    });
+
+    return res;
+  }
+
 }
 
 export default new AuthService();

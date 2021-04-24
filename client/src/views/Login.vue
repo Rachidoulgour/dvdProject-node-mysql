@@ -3,10 +3,10 @@
     <a-form-item :validate-status="userNameError() ? 'error' : ''" :help="userNameError() || ''">
       <a-input
         v-decorator="[
-          'userName',
+          'email',
           { rules: [{ required: true, message: 'Please input your username!' }] },
         ]"
-        placeholder="Username"
+        placeholder="email"
       >
         <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
       </a-input>
@@ -69,7 +69,8 @@ export default {
         }
         AuthService.login(values)
         .then(res => {
-            console.log(res)
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
         })
       });
     },

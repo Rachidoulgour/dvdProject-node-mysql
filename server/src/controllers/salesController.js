@@ -1,4 +1,5 @@
 const db = require('../database/db');
+const moment = require('moment');
 
 
 
@@ -11,7 +12,7 @@ function createSale(req, res) {
 	Sale.create({
 		movie_id: req.body.movie_id,
 		client_id: req.body.user_id,
-		created_date: "",
+		created_date: moment().unix(),
         is_returned:false
 	}).then(() => {
 				return res.status(200).send({message:"Sale created successfully!"});

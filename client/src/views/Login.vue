@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { AuthService } from '../services/services';
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
@@ -66,6 +67,10 @@ export default {
         if (!err) {
           console.log('Received values of form: ', values);
         }
+        AuthService.login(values)
+        .then(res => {
+            console.log(res)
+        })
       });
     },
   },

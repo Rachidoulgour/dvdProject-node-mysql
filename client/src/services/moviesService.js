@@ -23,7 +23,7 @@ class MoviesService {
       
       const res = await axios.get(URL+'/get-movies', {
         headers: {
-            Authorization: 'Bearer ' + this.getToken(),
+            Authorization: this.getToken(),
           },
       });
   
@@ -34,7 +34,18 @@ class MoviesService {
       
         const res = await axios.get(URL+'/get-movie/'+id, {
           headers: {
-              Authorization: 'Bearer ' + this.getToken(),
+              Authorization: this.getToken(),
+            },
+        });
+        console.log(res)
+        return res;
+      }
+
+      async deleteMovieById(id) {
+      
+        const res = await axios.delete(URL+'/delete-movie/'+id, {
+          headers: {
+              Authorization: this.getToken(),
             },
         });
         console.log(res)

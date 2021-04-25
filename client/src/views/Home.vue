@@ -33,7 +33,7 @@ export default {
         .catch((err) => {
           console.error(err);
           this.$notification.error({
-            message: "No hemos podido obtener el listado de empleados",
+            message: "Movies couldn't be get",
           });
         });
     },

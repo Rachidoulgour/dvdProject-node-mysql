@@ -5,6 +5,7 @@ import Signup from './views/Signup.vue';
 import Home from './views/Home.vue';
 import Movie from './views/Movie.vue';
 import AddMovie from './views/AddMovie.vue';
+import Sale from './views/sales/Sales.vue';
 
 
 Vue.use(Router);
@@ -33,6 +34,10 @@ const routes = [
       {
         path: '/add-movie',
         component: AddMovie,
+      },
+      {
+        path: '/sales',
+        component: Sale,
       },
 ]
 

@@ -22,9 +22,9 @@ export default {
       SalesService.getSales()
         .then((res) => {
           
-          return res.data;
+          return res.data.sales;
         })
-        .then((movies) => (this.movies = movies))
+        .then((sales) => (this.sales = sales))
         .catch((err) => {
           console.error(err);
           this.$notification.error({

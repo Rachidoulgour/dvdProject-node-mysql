@@ -4,6 +4,7 @@ import Login from './views/Login.vue';
 import Signup from './views/Signup.vue';
 import Home from './views/Home.vue';
 import Movie from './views/Movie.vue';
+import AddMovie from './views/AddMovie.vue';
 
 
 Vue.use(Router);
@@ -28,7 +29,11 @@ const routes = [
       {
         path: '/movie/:id',
         component: Movie,
-      }
+      },
+      {
+        path: '/add-movie',
+        component: AddMovie,
+      },
 ]
 
 const router = new Router({

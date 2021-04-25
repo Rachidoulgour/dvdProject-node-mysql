@@ -7,7 +7,7 @@ const Movie = db.models.movies;
 function addMovie(req, res) {
 
     Movie.create({
-        name: req.body.name,
+        name: req.body.title,
         price: req.body.price,
         genre: req.body.genre,
     }).then(() => {

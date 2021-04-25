@@ -7,6 +7,18 @@ class MoviesService {
         return localStorage.getItem('token');
       }
 
+      async addMovie(movie) {
+        const token = this.getToken()
+        console.log(token)
+        const res = await axios.post(URL+'/add-movie', movie, {
+          headers: {
+              Authorization: this.getToken(),
+            },
+        });
+    
+        return res;
+      }
+
     async getMovies() {
       
       const res = await axios.get(URL+'/get-movies', {

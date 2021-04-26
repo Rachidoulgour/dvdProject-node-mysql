@@ -28,7 +28,7 @@ function createSale(req, res) {
 // Get all sales
 getSales = async (req, res) => {
 
-    const sales = await db.query("SELECT * From sales, movies, users where sales.movie_id = movies.movieId and sales.client_id = users.userId", {type: db.QueryTypes.SELECT});
+    const sales = await db.query("SELECT * From sales, movies, users where sales.movie_id = movies.id and sales.client_id = users.id", {type: db.QueryTypes.SELECT});
     if (!sales) {
         return res.status(404).send({
             message: "Sales not found"
@@ -43,7 +43,7 @@ getSales = async (req, res) => {
 //Getting clients
 getClients = async (req, res) => {
 
-    const clients = await db.query("SELECT * From users, sales where sales.client_id = users.userId", {type: db.QueryTypes.SELECT});
+    const clients = await db.query("SELECT * From users, sales where sales.client_id = users.id", {type: db.QueryTypes.SELECT});
     if (!clients) {
         return res.status(404).send({
             message: "Sales not found"

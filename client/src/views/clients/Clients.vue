@@ -9,7 +9,7 @@
      
     </div> -->
     <a-table
-      class="companies-table"
+      class="clients-table"
       :columns="columns"
       :dataSource="clients"
       :rowSelection="{
@@ -17,16 +17,12 @@
         onChange: onSelectChange,
       }"
       :pagination="false"
-      :locale="{ emptyText: 'No hemos encontrado ninguna empresa' }"
     >
-      <span slot="management_office" slot-scope="management_office">{{
-        management_office ? 'Si' : 'No'
-      }}</span>
 
-      <div slot="action" class="actions" slot-scope="company">
-        <router-link :to="`/employer/edit-company/${company.id}`">
+      <div slot="action" class="actions">
+        
           <a-icon type="setting" />
-        </router-link>
+        
       </div>
     </a-table>
     

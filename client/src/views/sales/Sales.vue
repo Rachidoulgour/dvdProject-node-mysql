@@ -39,8 +39,8 @@ import { SalesService } from "../../services/services";
 const columns = [
   {
     title: 'Sales_id',
-    dataIndex: 'saleId',
-    key: 'saleId',
+    dataIndex: 'id',
+    key: 'id',
     
   },
   {

@@ -8,8 +8,24 @@ import AddMovie from './views/AddMovie.vue';
 import Sale from './views/sales/Sales.vue';
 import Clients from './views/clients/Clients.vue';
 
+import roles from './helpers/user_helpers';
 
 Vue.use(Router);
+
+const checkRolesAndRedirect = (allowedRoles, next) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user)
+  let userIsAllowed = false;
+
+  if(allowedRoles.includes(user.role)){
+    userIsAllowed = true;
+  } 
+  if (userIsAllowed) {
+    next();
+  } else {
+    router.push('/login');
+  }
+};
 
 const routes = [
     {
@@ -27,18 +43,42 @@ const routes = [
       {
         path: '/home',
         component: Home,
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN, roles.USER],
+            next
+          );
+        },
       },
       {
         path: '/movie/:id',
         component: Movie,
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN, roles.USER],
+            next
+          );
+        },
       },
       {
         path: '/add-movie',
         component: AddMovie,
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN],
+            next
+          );
+        },
       },
       {
         path: '/sales',
         component: Sale,
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN, roles.USER],
+            next
+          );
+        },
       },
       {
         path: '/clients',
@@ -50,5 +90,7 @@ const router = new Router({
     mode: 'history',
     routes,
   });
+
+  
 
 export default router;

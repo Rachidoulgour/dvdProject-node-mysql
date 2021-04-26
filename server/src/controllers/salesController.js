@@ -28,15 +28,13 @@ function createSale(req, res) {
 // Get all sales
 getSales = async (req, res) => {
 
-    const sales = await Sale.findAll({
-        include: [User, Movie]
-    });
+    const sales = await db.query("SELECT * From sales, movies, users where sales.movie_id = movies.movieId and sales.client_id = users.userId", {type: db.QueryTypes.SELECT});
     if (!sales) {
         return res.status(404).send({
-            message: "Movies not found"
+            message: "Sales not found"
         });
     } else {
-        return res.status(200).send({
+        res.status(200).send({
             sales
         });
     }

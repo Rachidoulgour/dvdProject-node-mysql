@@ -6,6 +6,7 @@ import Home from './views/Home.vue';
 import Movie from './views/Movie.vue';
 import AddMovie from './views/AddMovie.vue';
 import Sale from './views/sales/Sales.vue';
+import Clients from './views/clients/Clients.vue';
 
 
 Vue.use(Router);
@@ -38,6 +39,10 @@ const routes = [
       {
         path: '/sales',
         component: Sale,
+      },
+      {
+        path: '/clients',
+        component: Clients,
       },
 ]
 

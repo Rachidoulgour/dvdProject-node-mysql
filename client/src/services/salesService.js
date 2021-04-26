@@ -29,7 +29,16 @@ class SalesService {
       
       return res;
     }
-  
+    async getClients() {
+      
+      const res = await axios.get(URL+'/clients', {
+        headers: {
+            Authorization: this.getToken(),
+          },
+      });
+      
+      return res;
+    }
     
   
   }

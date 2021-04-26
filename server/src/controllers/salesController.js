@@ -40,6 +40,21 @@ getSales = async (req, res) => {
     }
 }
 
+//Getting clients
+getClients = async (req, res) => {
+
+    const clients = await db.query("SELECT * From users, sales where sales.client_id = users.userId", {type: db.QueryTypes.SELECT});
+    if (!clients) {
+        return res.status(404).send({
+            message: "Sales not found"
+        });
+    } else {
+        res.status(200).send({
+            clients
+        });
+    }
+}
+
 //Return the movie
 updateSaleToReturned = async (req,res)=>{
     
@@ -66,5 +81,6 @@ updateSaleToReturned = async (req,res)=>{
 module.exports = {
     createSale,
     getSales,
-    updateSaleToReturned
+    updateSaleToReturned,
+    getClients
 }

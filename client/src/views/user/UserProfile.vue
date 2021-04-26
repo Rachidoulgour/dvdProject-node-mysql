@@ -15,7 +15,7 @@ export default {
   name: "UserProfile",
   data() {
     return {
-      movies: [],
+      purchases: [],
     };
   },
   mounted() {
@@ -25,7 +25,6 @@ export default {
     getMyPurchases() {
       SalesService.getPurchasesUser(this.$route.params.id)
         .then((res) => {
-          console.log(res.data.purchases);
           return res.data.purchases;
         })
         .then((purchases) => (this.purchases = purchases))

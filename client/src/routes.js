@@ -15,7 +15,7 @@ Vue.use(Router);
 
 const checkRolesAndRedirect = (allowedRoles, next) => {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user)
+
   let userIsAllowed = false;
 
   if(allowedRoles.includes(user.role)){

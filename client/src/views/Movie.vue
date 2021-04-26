@@ -6,7 +6,7 @@
         <p>Price: {{ movie.price }}€</p>
 
         <div>
-          <a-button type="primary" @click="showModal(movie.id)">
+          <a-button type="primary" @click="showModal(movie.id)" v-if="user.role==='ADMIN'" :key="user.id">
             Delete Movie
           </a-button>
           <a-modal
@@ -18,7 +18,7 @@
           >
             <p>{{ ModalText }}</p>
           </a-modal>
-          <a-button type="primary" @click="buyMovie(movie.id)">
+          <a-button type="primary" @click="buyMovie(movie.id)" v-if="user.role='USER'">
             Buy
           </a-button>
         </div>
@@ -33,7 +33,7 @@ export default {
   name: "Movie",
   data() {
     return {
-        user: "",
+        user: {},
       movie: {},
       ModalText: "Do you want delete this movie?",
       visible: false,
@@ -118,6 +118,7 @@ export default {
     }else{
       this.user = null;
     }
+    console.log(this.user)
     return this.user;
     }
   },

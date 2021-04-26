@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <ul>
-      <div :v-if="isLoggedIn===false" :key="1" class="isLoggedIn">
+      <div v-if="isLoggedIn===false" :key="1" class="isLoggedIn">
         <li>
           <router-link :to="'/login'">
             <p>Login</p>
@@ -13,7 +13,7 @@
           </router-link>
         </li>
       </div>
-      <div :v-if="isLoggedIn===true" :key="2" class="isLoggedIn">
+      <div v-if="isLoggedIn===true" :key="2" class="isLoggedIn">
         <li>
           <router-link :to="'/home'">
             <p>Home</p>
@@ -21,7 +21,7 @@
         </li>
         <li>
           <router-link :to="'/sales'">
-            <p :v-if="user.role===ADMIN">Sales</p>
+            <p v-if="user.role==='ADMIN'">Sales</p>
           </router-link>
         </li>
       </div>

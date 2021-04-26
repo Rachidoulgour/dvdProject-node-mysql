@@ -83,11 +83,9 @@ getPurchasesById = async (req, res) => {
 //Return the movie
 updateSaleToReturned = async (req, res) => {
 
-
-
     const sale = await Sale.findOne({
         where: {
-            id: req.params.id
+            id: req.body.params.id
         }
     })
     if (!sale) {
@@ -96,17 +94,24 @@ updateSaleToReturned = async (req, res) => {
             message: 'Sale Not Found.'
         });
     } else {
-        Sale.update({
-            is_returned: true
-        }, {
-            where: {
-                id: req.params.id
-            }
-        })
-        return res.status(200).send({
-            sale,
-            message: "Movie updated"
-        });
+        if (sale.client_id = req.body.params.userId) {
+            Sale.update({
+                is_returned: true
+            }, {
+                where: {
+                    id: req.body.params.id
+                }
+            })
+            return res.status(200).send({
+                sale,
+                message: "Movie returned"
+            });
+        }else {
+            return res.status(403).send({
+                message: "Your not authotized"
+            });
+        }
+
     }
 
 

@@ -6,7 +6,7 @@ const express = require('express');
 
     api.post('/create-sale', authentication.ensureAuth, salesController.createSale);
     api.get('/sales', authentication.ensureAuth, salesController.getSales);
-    api.put('/return-sale/:id', authentication.ensureAuth, salesController.updateSaleToReturned);
+    api.put('/return-sale', authentication.ensureAuth, salesController.updateSaleToReturned);
     api.get('/clients', authentication.ensureAuth, salesController.getClients);
     api.get('/purchases/:id', authentication.ensureAuth, salesController.getPurchasesById);
 

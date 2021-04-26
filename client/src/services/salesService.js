@@ -8,7 +8,6 @@ class SalesService {
       }
 
       async buyMovie(movie_id, user_id) {
-          console.log(movie_id, user_id)
 
         const res = await axios.post(URL+'/create-sale', { params: { movie_id, user_id }}, {
           headers: {
@@ -52,6 +51,17 @@ class SalesService {
       return res;
     }
     
+    //Return the movie
+    async returnMovie(id, userId) {
+      
+      const res = await axios.put(URL+'/return-sale', { params: { id, userId }}, {
+        headers: {
+            Authorization: this.getToken(),
+          },
+      });
+      
+      return res;
+    }
   
   }
   

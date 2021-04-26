@@ -39,6 +39,18 @@ class SalesService {
       
       return res;
     }
+
+    //Purchases by user
+    async getPurchasesUser(id) {
+      
+      const res = await axios.get(URL+'/purchases/' + id, {
+        headers: {
+            Authorization: this.getToken(),
+          },
+      });
+      
+      return res;
+    }
     
   
   }

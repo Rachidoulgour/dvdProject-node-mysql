@@ -7,6 +7,7 @@ import Movie from './views/Movie.vue';
 import AddMovie from './views/AddMovie.vue';
 import Sale from './views/sales/Sales.vue';
 import Clients from './views/clients/Clients.vue';
+import UserProfile from './views/user/UserProfile.vue';
 
 import roles from './helpers/user_helpers';
 
@@ -56,6 +57,16 @@ const routes = [
         beforeEnter: (to, from, next) => {
           checkRolesAndRedirect(
             [roles.ADMIN, roles.USER],
+            next
+          );
+        },
+      },
+      {
+        path: '/my-profile/:id',
+        component: UserProfile,
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.USER],
             next
           );
         },

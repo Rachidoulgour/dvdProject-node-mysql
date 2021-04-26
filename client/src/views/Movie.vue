@@ -6,7 +6,12 @@
         <p>Price: {{ movie.price }}€</p>
 
         <div>
-          <a-button type="primary" @click="showModal(movie.id)" v-if="user.role==='ADMIN'" :key="user.id">
+          <a-button
+            type="primary"
+            @click="showModal(movie.id)"
+            v-if="user.role === 'ADMIN'"
+            :key="user.id"
+          >
             Delete Movie
           </a-button>
           <a-modal
@@ -18,7 +23,11 @@
           >
             <p>{{ ModalText }}</p>
           </a-modal>
-          <a-button type="primary" @click="buyMovie(movie.id)" v-if="user.role='USER'">
+          <a-button
+            type="primary"
+            @click="buyMovie(movie.id)"
+            v-if="(user.role = 'USER')"
+          >
             Buy
           </a-button>
         </div>
@@ -33,7 +42,7 @@ export default {
   name: "Movie",
   data() {
     return {
-        user: {},
+      user: {},
       movie: {},
       ModalText: "Do you want delete this movie?",
       visible: false,
@@ -42,15 +51,13 @@ export default {
   },
   mounted() {
     this.getMovie();
-    this.getUser()
+    this.getUser();
   },
   methods: {
     // Load movies
     getMovie() {
-      console.log(this.$route.params.id);
       MoviesService.getMovieById(this.$route.params.id)
         .then((res) => {
-          console.log(res.data.movie);
           return res.data.movie;
         })
         .then((movie) => (this.movie = movie))
@@ -92,15 +99,16 @@ export default {
     },
 
     //Buy movie
-    buyMovie(movie_id){
-        // let user = this.getUser()
-        
-        SalesService.buyMovie(movie_id, this.user.id)
-        .then(res => {
-            console.log(res)
-        }
-            
-            // this.$router.push('/home')
+    buyMovie(movie_id) {
+      // let user = this.getUser()
+
+      SalesService.buyMovie(movie_id, this.user.id)
+        .then(
+          (res) => {
+            console.log(res);
+          }
+
+          // this.$router.push('/home')
         )
         .catch((err) => {
           console.error(err);
@@ -111,16 +119,16 @@ export default {
     },
 
     //Getting logued user
-    getUser(){
-        let user = JSON.parse(localStorage.getItem('user'));
-    if(user != "undefined"){
-      this.user = user
-    }else{
-      this.user = null;
-    }
-    console.log(this.user)
-    return this.user;
-    }
+    getUser() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (user != "undefined") {
+        this.user = user;
+      } else {
+        this.user = null;
+      }
+      console.log(this.user);
+      return this.user;
+    },
   },
 };
 </script>

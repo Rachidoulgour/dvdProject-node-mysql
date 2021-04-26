@@ -7,10 +7,10 @@ class SalesService {
         return localStorage.getItem('token');
       }
 
-      async buyMovie(movie) {
-        const token = this.getToken()
-        console.log(token)
-        const res = await axios.post(URL+'/create-sale', movie, {
+      async buyMovie(movie_id, user_id) {
+          console.log(movie_id, user_id)
+
+        const res = await axios.post(URL+'/create-sale', { params: { movie_id, user_id }}, {
           headers: {
               Authorization: this.getToken(),
             },
@@ -26,7 +26,7 @@ class SalesService {
             Authorization: this.getToken(),
           },
       });
-  
+      
       return res;
     }
   

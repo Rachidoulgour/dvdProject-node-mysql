@@ -26,7 +26,7 @@ class MoviesService {
             Authorization: this.getToken(),
           },
       });
-  
+      
       return res;
     }
 

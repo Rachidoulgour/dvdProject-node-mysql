@@ -1,7 +1,16 @@
 <template>
-  <div>
+<div>
+  <div v-for="sale in sales" :key="sale.id">
+        
+      <a-card :title="sale.id" style="width: 300px">
+        <p>Movie_id: {{ sale.movie_id }}</p>
+        <p>User_id: {{ sale.client_id }}</p>
+      </a-card>
+     
+    </div>
     
-  </div>
+    </div>
+    
 </template>
 
 <script>
@@ -21,7 +30,7 @@ export default {
     getSales() {
       SalesService.getSales()
         .then((res) => {
-          
+          console.log(res.data.sales)
           return res.data.sales;
         })
         .then((sales) => (this.sales = sales))

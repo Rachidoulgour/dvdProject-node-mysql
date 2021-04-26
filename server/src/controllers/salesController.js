@@ -4,14 +4,18 @@ const moment = require('moment');
 
 
 const Sale = db.models.sales;
+const User = db.models.users;
+const Movie = db.models.movies;
 
 //Create a sale
 function createSale(req, res) {
-    console.log(db.models)
+    console.log(req.body)
+    
 	// Save Sale to Database
 	Sale.create({
-		movie_id: req.body.movie_id,
-		client_id: req.body.user_id,
+        
+		movie_id: Number(req.body.params.movie_id),
+		client_id: Number(req.body.params.user_id),
 		created_date: moment().unix(),
         is_returned:false
 	}).then(() => {
@@ -24,7 +28,9 @@ function createSale(req, res) {
 // Get all sales
 getSales = async (req, res) => {
 
-    const sales = await Sale.findAll();
+    const sales = await Sale.findAll({
+        include: [User, Movie]
+    });
     if (!sales) {
         return res.status(404).send({
             message: "Movies not found"

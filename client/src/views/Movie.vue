@@ -18,6 +18,9 @@
           >
             <p>{{ ModalText }}</p>
           </a-modal>
+          <a-button type="primary" @click="buyMovie(movie.id)">
+            Buy
+          </a-button>
         </div>
       </a-card>
     </div>
@@ -25,11 +28,12 @@
 </template>
 
 <script>
-import { MoviesService } from "../services/services";
+import { MoviesService, SalesService } from "../services/services";
 export default {
   name: "Movie",
   data() {
     return {
+        user: "",
       movie: {},
       ModalText: "Do you want delete this movie?",
       visible: false,
@@ -38,6 +42,7 @@ export default {
   },
   mounted() {
     this.getMovie();
+    this.getUser()
   },
   methods: {
     // Load movies
@@ -85,6 +90,36 @@ export default {
     handleCancel() {
       this.visible = false;
     },
+
+    //Buy movie
+    buyMovie(movie_id){
+        // let user = this.getUser()
+        
+        SalesService.buyMovie(movie_id, this.user.id)
+        .then(res => {
+            console.log(res)
+        }
+            
+            // this.$router.push('/home')
+        )
+        .catch((err) => {
+          console.error(err);
+          this.$notification.error({
+            message: "Movie couldn't be added",
+          });
+        });
+    },
+
+    //Getting logued user
+    getUser(){
+        let user = JSON.parse(localStorage.getItem('user'));
+    if(user != "undefined"){
+      this.user = user
+    }else{
+      this.user = null;
+    }
+    return this.user;
+    }
   },
 };
 </script>

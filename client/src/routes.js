@@ -8,6 +8,7 @@ import AddMovie from './views/AddMovie.vue';
 import Sale from './views/sales/Sales.vue';
 import Clients from './views/clients/Clients.vue';
 import UserProfile from './views/user/UserProfile.vue';
+import AdminPanel from './views/Admin/AdminPanel.vue';
 
 import roles from './helpers/user_helpers';
 
@@ -72,24 +73,29 @@ const routes = [
         },
       },
       {
+        path: '/admin-panel',
+        component: AdminPanel,
+        
+      },
+      {
         path: '/add-movie',
         component: AddMovie,
-        beforeEnter: (to, from, next) => {
-          checkRolesAndRedirect(
-            [roles.ADMIN],
-            next
-          );
-        },
+        // beforeEnter: (to, from, next) => {
+        //   checkRolesAndRedirect(
+        //     [roles.ADMIN],
+        //     next
+        //   );
+        // },
       },
       {
         path: '/sales',
         component: Sale,
-        beforeEnter: (to, from, next) => {
-          checkRolesAndRedirect(
-            [roles.ADMIN, roles.USER],
-            next
-          );
-        },
+        // beforeEnter: (to, from, next) => {
+        //   checkRolesAndRedirect(
+        //     [roles.ADMIN, roles.USER],
+        //     next
+        //   );
+        // },
       },
       {
         path: '/clients',

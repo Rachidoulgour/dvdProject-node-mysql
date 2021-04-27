@@ -1,5 +1,6 @@
 <template>
   <div>
+      <Header/>
     <div>
       <h2>My Profile</h2>
     </div>
@@ -27,10 +28,14 @@
 </template>
 
 <script>
+import Header from '../../components/Header';
 import salesService from "../../services/salesService";
 import { AuthService, SalesService } from "../../services/services";
 export default {
   name: "UserProfile",
+  components: {
+      Header
+  },
   data() {
     return {
       purchases: [],

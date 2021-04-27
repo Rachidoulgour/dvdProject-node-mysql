@@ -8,8 +8,13 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="'/my-profile/' + user.id">
-            <p>Profile</p>
+          <router-link :to="'/clients'">
+            <p>Clients</p>
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="'/sales'">
+            <p>Sales</p>
           </router-link>
         </li>
         <li @click="logOut">
@@ -25,7 +30,7 @@
 <script>
 import AuthService from "../services/authService";
 export default {
-  name: "Header",
+  name: "AdminHeader",
   data() {
     return {
       isLoggedIn: false,
@@ -56,9 +61,9 @@ export default {
 <style scoped>
 .header {
   display: flex;
-  background-color: rgb(44, 184, 165);
+  /* //background-color: rgb(44, 184, 165); */
   color: white;
-  margin: 0 0 10px 0;
+  margin: 0 0 60px 0;
 }
 ul {
   display: flex;
@@ -71,10 +76,10 @@ ul {
 li {
   all: unset;
   margin: 0.1rem 1rem;
-  color: white;
+  
 }
 p {
-  color: white;
+  color: rgb(44, 184, 165);;
   margin: 10px 0;
 }
 </style>

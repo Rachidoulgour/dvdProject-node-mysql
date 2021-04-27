@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <div>
+  <div class="movie-view">
+    <Header/>
+    <AdminHeader v-if="user.role=='ADMIN'"/>
+    <div class="card-container"> 
       <a-card :title="movie.name" style="width: 300px">
         <p>{{ movie.genre }}</p>
         <p>Price: {{ movie.price }}€</p>
@@ -37,9 +39,15 @@
 </template>
 
 <script>
-import { MoviesService, SalesService } from "../services/services";
+import Header from '../components/Header'
+import AdminHeader from '../components/AminHeader';
+import { AuthService, MoviesService, SalesService } from "../services/services";
 export default {
   name: "Movie",
+  component: {
+    AdminHeader,
+    Header
+  },
   data() {
     return {
       user: {},
@@ -120,15 +128,22 @@ export default {
 
     //Getting logued user
     getUser() {
-      let user = JSON.parse(localStorage.getItem("user"));
-      if (user != "undefined") {
-        this.user = user;
-      } else {
-        this.user = null;
-      }
-      console.log(this.user);
-      return this.user;
+      this.user = AuthService.getUser
     },
   },
 };
 </script>
+<style>
+.movie-view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+</style>

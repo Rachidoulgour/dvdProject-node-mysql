@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Header/>
+    <AdminHeader v-if="user.role =='ADMIN'"/>
     <div v-for="movie in movies" :key="movie.id">
         <router-link :to="`/movie/${movie.id}`">
       <a-card :title="movie.name" style="width: 300px">
@@ -12,12 +14,19 @@
 </template>
 
 <script>
-import { MoviesService } from "../services/services";
+import Header from '../components/Header'
+import AdminHeader from '../components/AminHeader'
+import { AuthService, MoviesService } from "../services/services";
 export default {
   name: "Home",
+  components: {
+    AdminHeader,
+    Header
+  },
   data() {
     return {
       movies: [],
+      user: {}
     };
   },
   mounted() {
@@ -37,6 +46,10 @@ export default {
           });
         });
     },
+
+    getUser(){
+      this.user = AuthService.getUser()
+    }
   },
 };
 </script>

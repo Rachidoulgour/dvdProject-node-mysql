@@ -1,4 +1,6 @@
 <template>
+<div>
+  <h3>Signup or <RouterLink :to="'/login'">Login</RouterLink></h3>
   <a-form layout="inline" :form="form" @submit="handleSubmit">
       <a-form-item :validate-status="userNameError() ? 'error' : ''" :help="userNameError() || ''">
       <a-input
@@ -40,6 +42,7 @@
       </a-button>
     </a-form-item>
   </a-form>
+  </div>
 </template>
 
 <script>

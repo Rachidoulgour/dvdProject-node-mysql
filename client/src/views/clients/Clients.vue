@@ -1,13 +1,6 @@
 <template>
 <div>
-  <!-- <div v-for="sale in sales" :key="sale.id">
-        
-      <a-card :title="sale.id" style="width: 300px">
-        <p>Movie_id: {{ sale.movie_id }}</p>
-        <p>User_id: {{ sale.client_id }}</p>
-      </a-card>
-     
-    </div> -->
+    <AdminHeader/>
     <a-table
       class="clients-table"
       :columns="columns"
@@ -31,6 +24,7 @@
 </template>
 
 <script>
+import AdminHeader from '../../components/AminHeader'
 import { SalesService } from "../../services/services";
 const columns = [
   {
@@ -57,6 +51,9 @@ const columns = [
 
 export default {
   name: "Clients",
+  components: {
+      AdminHeader
+  },
   data() {
     return {
       clients: [],

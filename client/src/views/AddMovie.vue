@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AdminHeader/>
     <a-form
       :form="form"
       :label-col="{ span: 5 }"
@@ -68,10 +69,14 @@
 </template>
 
 <script>
-import { MoviesService } from "../services/services";
+import AdminHeader from '../components/AminHeader';
+import { MoviesService } from '../services/services';
 
 export default {
   name: "AddMovie",
+  components: {
+    AdminHeader
+  },
   data() {
     return {
       formLayout: "horizontal",

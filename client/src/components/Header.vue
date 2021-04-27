@@ -29,6 +29,11 @@
             <p v-if="user.role === 'ADMIN'">Sales</p>
           </router-link>
         </li>
+        <li @click="logOut">
+          <router-link :to="'/login'">         
+            <p>Logout</p>
+            </router-link>
+        </li>
       </div>
     </ul>
   </div>
@@ -57,6 +62,10 @@ export default {
 
     getUser() {
       this.user = AuthService.getUser();
+    },
+
+    logOut() {
+      AuthService.logOut();
     },
   },
 };

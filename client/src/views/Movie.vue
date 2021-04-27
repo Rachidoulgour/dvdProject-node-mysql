@@ -1,7 +1,9 @@
 <template>
   <div class="movie-view">
-    <Header/>
-    <AdminHeader v-if="user.role=='ADMIN'"/>
+    <div v-if="(user.role =='USER')"><Header /></div>
+    <div v-if="user.role === 'ADMIN'">
+      <AdminHeader />
+    </div>
     <div class="card-container"> 
       <a-card :title="movie.name" style="width: 300px">
         <p>{{ movie.genre }}</p>

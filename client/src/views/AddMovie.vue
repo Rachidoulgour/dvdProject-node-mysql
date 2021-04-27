@@ -86,7 +86,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           MoviesService.addMovie(values)
-            .then(this.$router.push("/home"))
+            .then(this.$router.push("/admin-panel"))
             .catch((err) => {
               console.error(err);
               this.$notification.error({

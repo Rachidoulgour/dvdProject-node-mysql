@@ -4,7 +4,7 @@
       <div v-if="isLoggedIn === true" :key="2" class="isLoggedIn">
         <li>
           <router-link :to="'/home'">
-            <p>Home</p>
+            <p>Movies</p>
           </router-link>
         </li>
         <li>

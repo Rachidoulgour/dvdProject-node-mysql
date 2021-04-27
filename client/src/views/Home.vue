@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="(user.role = 'USER')"><Header /></div>
+    <div v-if="(user.role =='USER')"><Header /></div>
     <div v-if="user.role === 'ADMIN'">
       <AdminHeader />
     </div>

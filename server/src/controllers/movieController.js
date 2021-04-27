@@ -22,7 +22,11 @@ function addMovie(req, res) {
 //Get All Movies
 getMovies = async (req, res) => {
 
-    const movies = await Movie.findAll();
+    const movies = await Movie.findAll({
+        order: [
+            ['id', 'DESC'],
+      ],
+    });
     if (!movies) {
         return res.status(404).send({
             message: "Movies not found"

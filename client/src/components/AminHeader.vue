@@ -17,6 +17,11 @@
             <p>Sales</p>
           </router-link>
         </li>
+        <li>
+          <router-link :to="'/add-movie'">
+            <p>Add Movie</p>
+          </router-link>
+        </li>
         <li @click="logOut">
           <router-link :to="'/login'">         
             <p>Logout</p>

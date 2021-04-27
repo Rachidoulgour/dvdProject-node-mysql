@@ -3,6 +3,10 @@ import axios from 'axios';
 const URL = 'http://localhost:5050/api'
 
 class AuthService {
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
   async login(user) {
     
     const res = await axios.post(URL + '/signin', user, {
@@ -18,6 +22,18 @@ class AuthService {
 
     });
 
+    return res;
+  }
+
+  //GetAllUsers
+  async getUsers() {
+      
+    const res = await axios.get(URL+'/users', {
+      headers: {
+          Authorization: this.getToken(),
+        },
+    });
+    
     return res;
   }
 

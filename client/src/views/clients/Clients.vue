@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import AdminHeader from '../../components/AminHeader'
+import AdminHeader from '../../components/AminHeader';
 import { SalesService } from "../../services/services";
 const columns = [
   {

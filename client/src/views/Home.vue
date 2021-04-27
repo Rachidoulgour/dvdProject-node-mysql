@@ -1,7 +1,11 @@
 <template>
   <div>
-    <Header/>
-    <AdminHeader v-if="user.role =='ADMIN'"/>
+    <div v-if="user.role='USER'"><Header/></div>
+    <div v-if="user.role ==='ADMIN'"> 
+      <AdminHeader/>
+    </div>
+    
+
     <div v-for="movie in movies" :key="movie.id">
         <router-link :to="`/movie/${movie.id}`">
       <a-card :title="movie.name" style="width: 300px">
@@ -31,6 +35,7 @@ export default {
   },
   mounted() {
     this.getAllMovies();
+    this.getUser();
   },
   methods: {
     getAllMovies() {
@@ -49,6 +54,7 @@ export default {
 
     getUser(){
       this.user = AuthService.getUser()
+      console.log(this.user.role)
     }
   },
 };

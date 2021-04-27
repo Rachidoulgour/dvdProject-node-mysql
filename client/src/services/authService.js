@@ -4,7 +4,7 @@ const URL = 'http://localhost:5050/api'
 
 class AuthService {
   async login(user) {
-    console.log(user)
+    
     const res = await axios.post(URL + '/signin', user, {
 
     });
@@ -13,7 +13,7 @@ class AuthService {
   }
 
   async signup(user) {
-    console.log(user)
+    
     const res = await axios.post(URL + '/signup', user, {
 
     });

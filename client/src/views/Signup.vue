@@ -36,6 +36,27 @@
         <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
       </a-input>
     </a-form-item>
+    <a-form-item label="Role">
+        <a-select
+          v-decorator="[
+            'role',
+            {
+              rules: [
+                { required: true, message: 'Please select your role!' },
+              ],
+            },
+          ]"
+          placeholder="Select a option"
+          
+        >
+          <a-select-option value="ADMIN">
+            Admin
+          </a-select-option>
+          <a-select-option value="USER">
+            User
+          </a-select-option>
+        </a-select>
+      </a-form-item>
     <a-form-item>
       <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())">
         Sign Up

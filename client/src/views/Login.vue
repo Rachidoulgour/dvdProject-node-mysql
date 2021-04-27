@@ -69,14 +69,19 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
-        }
-        AuthService.login(values)
+          AuthService.login(values)
         .then(res => {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.user));
-            this.$router.push('/home')
+            if(res.data.user.role === 'ADMIN'){
+              this.$router.push('/admin-panel')
+            } else {
+              this.$router.push('/home')
+            }
+            
         })
+        }
+        
       });
     },
   },

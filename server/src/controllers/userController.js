@@ -13,7 +13,7 @@ function signup(req, res) {
 		username: req.body.username,
 		email: req.body.email,
 		password: bcrypt.hashSync(req.body.password, 8),
-        role:'USER'
+        role:req.body.role
 	}).then(() => {
 				return res.status(200).send({message:"User registered successfully!"});
         }).catch(err => {

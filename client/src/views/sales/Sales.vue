@@ -1,6 +1,8 @@
 <template>
-<div>
-  <AdminHeader/>
+  <div>
+    <AdminHeader />
+
+    <h3>Sales</h3>
     <a-table
       class="companies-table"
       :columns="columns"
@@ -10,58 +12,46 @@
         onChange: onSelectChange,
       }"
       :pagination="false"
-      :locale="{ emptyText: 'No hemos encontrado ninguna empresa' }"
     >
-      <span slot="management_office" slot-scope="management_office">{{
-        management_office ? 'Si' : 'No'
-      }}</span>
-
-      <div slot="action" class="actions" slot-scope="company">
-        <router-link :to="`/employer/edit-company/${company.id}`">
-          <a-icon type="setting" />
-        </router-link>
-      </div>
+      <a-icon type="setting" />
     </a-table>
-    
-    </div>
-    
+  </div>
 </template>
 
 <script>
-import AdminHeader from '../../components/AminHeader';
+import AdminHeader from "../../components/AminHeader";
 import { SalesService } from "../../services/services";
 const columns = [
   {
-    title: 'Sales_id',
-    dataIndex: 'id',
-    key: 'id',
-    
+    title: "Sales_id",
+    dataIndex: "id",
+    key: "id",
   },
   {
-    title: 'Client',
-    dataIndex: 'username',
-    key: 'username',
+    title: "Client",
+    dataIndex: "username",
+    key: "username",
   },
   {
-    title: 'Movie',
-    dataIndex: 'name',
-    key: 'name',
+    title: "Movie",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: 'Price',
-    dataIndex: 'price',
-    key: 'price',
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
   },
   {
-    key: 'action',
-    scopedSlots: { customRender: 'action' },
+    key: "action",
+    scopedSlots: { customRender: "action" },
   },
 ];
 
 export default {
   name: "Sales",
   components: {
-    AdminHeader
+    AdminHeader,
   },
   data() {
     return {
@@ -84,9 +74,11 @@ export default {
         .then((res) => {
           return res.data.sales;
         })
-        .then(sls =>  //Adding key to tables rows (conditions of ant desing library)
-          sls.map(sl => { 
-            sl.key = sl.saleId;
+        .then((
+          sls //Adding key to tables rows (conditions of ant desing library)
+        ) =>
+          sls.map((sl) => {
+            sl.key = sl.id;
             return sl;
           })
         )

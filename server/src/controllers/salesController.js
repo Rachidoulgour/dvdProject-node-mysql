@@ -9,7 +9,6 @@ const Movie = db.models.movies;
 
 //Create a sale
 function createSale(req, res) {
-    console.log(req.body)
 
     // Save Sale to Database
     Sale.create({

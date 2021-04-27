@@ -113,10 +113,11 @@ export default {
       SalesService.buyMovie(movie_id, this.user.id)
         .then(
           (res) => {
-            console.log(res);
+            if(res){
+              this.$router.push('/home');
+            }
+            
           }
-
-          // this.$router.push('/home')
         )
         .catch((err) => {
           console.error(err);

@@ -1,6 +1,8 @@
 <template>
 <div>
     <AdminHeader/>
+
+    <h3>Clients</h3>
     <a-table
       class="clients-table"
       :columns="columns"
@@ -44,6 +46,7 @@ const columns = [
     key: 'email',
   },
   {
+    title: 'Email',
     key: 'action',
     scopedSlots: { customRender: 'action' },
   },
@@ -77,7 +80,7 @@ export default {
         })
         .then(sls =>  //Adding key to tables rows (conditions of ant desing library)
           sls.map(sl => { 
-            sl.key = sl.saleId;
+            sl.key = sl.id;
             return sl;
           })
         )

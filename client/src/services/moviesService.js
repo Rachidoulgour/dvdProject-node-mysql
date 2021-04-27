@@ -8,8 +8,7 @@ class MoviesService {
       }
 
       async addMovie(movie) {
-        const token = this.getToken()
-        console.log(token)
+      
         const res = await axios.post(URL+'/add-movie', movie, {
           headers: {
               Authorization: this.getToken(),
@@ -37,7 +36,7 @@ class MoviesService {
               Authorization: this.getToken(),
             },
         });
-        console.log(res)
+        
         return res;
       }
 
@@ -48,7 +47,7 @@ class MoviesService {
               Authorization: this.getToken(),
             },
         });
-        console.log(res)
+        
         return res;
       }
   

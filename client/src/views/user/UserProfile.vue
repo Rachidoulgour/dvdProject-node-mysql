@@ -64,7 +64,7 @@ export default {
 
     //Return the movie
     returnBook(id) {
-      console.log(id);
+      
       const userId = JSON.parse(localStorage.getItem("user")).id;
       salesService
         .returnMovie(id, userId)

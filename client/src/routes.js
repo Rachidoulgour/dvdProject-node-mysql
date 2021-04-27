@@ -75,27 +75,33 @@ const routes = [
       {
         path: '/admin-panel',
         component: AdminPanel,
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN],
+            next
+          );
+        },
         
       },
       {
         path: '/add-movie',
         component: AddMovie,
-        // beforeEnter: (to, from, next) => {
-        //   checkRolesAndRedirect(
-        //     [roles.ADMIN],
-        //     next
-        //   );
-        // },
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN],
+            next
+          );
+        },
       },
       {
         path: '/sales',
         component: Sale,
-        // beforeEnter: (to, from, next) => {
-        //   checkRolesAndRedirect(
-        //     [roles.ADMIN, roles.USER],
-        //     next
-        //   );
-        // },
+        beforeEnter: (to, from, next) => {
+          checkRolesAndRedirect(
+            [roles.ADMIN, roles.USER],
+            next
+          );
+        },
       },
       {
         path: '/clients',

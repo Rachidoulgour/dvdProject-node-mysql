@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AdminHeader/>
+    <AdminHeader />
     <a-form
       :form="form"
       :label-col="{ span: 5 }"
@@ -20,13 +20,10 @@
           v-decorator="[
             'genre',
             {
-              rules: [
-                { required: true, message: 'Please select your genre!' },
-              ],
+              rules: [{ required: true, message: 'Please select your genre!' }],
             },
           ]"
           placeholder="Select a option"
-          
         >
           <a-select-option value="action">
             Action
@@ -35,33 +32,33 @@
             Horror
           </a-select-option>
           <a-select-option value="romantic">
-              Romantic
+            Romantic
           </a-select-option>
           <a-select-option value="comedy">
-              Comedy
+            Comedy
           </a-select-option>
         </a-select>
       </a-form-item>
-       <a-form-item label="Price">
-            <a-input
-              v-decorator="[
-                'price',
+      <a-form-item label="Price">
+        <a-input
+          v-decorator="[
+            'price',
+            {
+              rules: [
                 {
-                  rules: [
-                    {
-                      required: true,
-                      message: 'Please enter the price!',
-                    },
-                    { validator: checkPrice },
-                  ],
+                  required: true,
+                  message: 'Please enter the price!',
                 },
-              ]"
-            />
-          </a-form-item>
-      
+                { validator: checkPrice },
+              ],
+            },
+          ]"
+        />
+      </a-form-item>
+
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
         <a-button type="primary" html-type="submit">
-        Add Movie
+          Add Movie
         </a-button>
       </a-form-item>
     </a-form>
@@ -69,13 +66,13 @@
 </template>
 
 <script>
-import AdminHeader from '../components/AminHeader';
-import { MoviesService } from '../services/services';
+import AdminHeader from "../components/AminHeader";
+import { MoviesService } from "../services/services";
 
 export default {
   name: "AddMovie",
   components: {
-    AdminHeader
+    AdminHeader,
   },
   data() {
     return {
@@ -88,22 +85,18 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log("Received values of form: ", values);
+          MoviesService.addMovie(values)
+            .then(this.$router.push("/home"))
+            .catch((err) => {
+              console.error(err);
+              this.$notification.error({
+                message: "Movie couldn't be added",
+              });
+            });
         }
-        MoviesService.addMovie(values)
-        .then(
-            
-            this.$router.push('/home')
-        )
-        .catch((err) => {
-          console.error(err);
-          this.$notification.error({
-            message: "Movie couldn't be added",
-          });
-        });
       });
     },
-    
+
     checkPrice(rule, value, callback) {
       if (value > 0) {
         callback();

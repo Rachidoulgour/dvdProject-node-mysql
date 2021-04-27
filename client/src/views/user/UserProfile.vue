@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div>
+      <h2>My Profile</h2>
+    </div>
+    <div>
+      <p>{{ user.username }}</p>
+      <p>{{ user.email }}</p>
+    </div>
     <div v-for="purchase in purchases" :key="purchase.id">
       <a-card :title="purchase.name" style="width: 300px">
         <p>{{ purchase.genre }}</p>
@@ -21,16 +28,18 @@
 
 <script>
 import salesService from "../../services/salesService";
-import { SalesService } from "../../services/services";
+import { AuthService, SalesService } from "../../services/services";
 export default {
   name: "UserProfile",
   data() {
     return {
       purchases: [],
+      user: {},
     };
   },
   mounted() {
     this.getMyPurchases();
+    this.getUser();
   },
   methods: {
     //Get purchases by user
@@ -64,6 +73,10 @@ export default {
             message: "Purchases couldn't be get",
           });
         });
+    },
+    //Getting user from localstorage
+    getUser() {
+      this.user = AuthService.getUser();
     },
   },
 };

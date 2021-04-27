@@ -9,10 +9,10 @@ const Movie = db.models.movies;
 
 //Create a sale
 function createSale(req, res) {
-
+  
     // Save Sale to Database
     Sale.create({
-
+        
         movie_id: Number(req.body.params.movie_id),
         client_id: Number(req.body.params.user_id),
         created_date: moment().unix(),
@@ -65,7 +65,7 @@ getClients = async (req, res) => {
 getPurchasesById = async (req, res) => {
 
     let userid = req.params.id
-    const purchases = await db.query(`SELECT * From sales, movies where sales.client_id = ${userid} and sales.movie_id=movies.id`, {
+    const purchases = await db.query(`SELECT * From sales, movies where sales.client_id = ${userid} and movies.id=sales.movie_id`, {
         type: db.QueryTypes.SELECT
     });
     if (!purchases) {

@@ -109,7 +109,6 @@ export default {
     //Buy movie
     buyMovie(movie_id) {
       // let user = this.getUser()
-
       SalesService.buyMovie(movie_id, this.user.id)
         .then(
           (res) => {
@@ -129,7 +128,7 @@ export default {
 
     //Getting logued user
     getUser() {
-      this.user = AuthService.getUser
+      this.user = AuthService.getUser();
     },
   },
 };
